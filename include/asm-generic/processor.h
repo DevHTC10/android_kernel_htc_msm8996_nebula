@@ -17,6 +17,14 @@
 
 #include <asm-generic/relaxed.h>
 
+#ifndef cpu_relaxed_read
+#define cpu_relaxed_read(p) (*(p))
+#endif
+
+#ifndef cpu_relaxed_read_long
+#define cpu_relaxed_read_long(p) (*(p))
+#endif
+
 #ifndef cpu_read_relax
 #define cpu_read_relax() cpu_relax()
 #endif
