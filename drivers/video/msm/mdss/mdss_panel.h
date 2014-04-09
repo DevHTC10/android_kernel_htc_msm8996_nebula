@@ -227,6 +227,7 @@ struct mdss_intf_recovery {
  *				the panel.
  * @MDSS_EVENT_PANEL_TIMING_SWITCH: Panel timing switch is requested.
  *				Argument provided is new panel timing.
+ * @MDSS_EVENT_ENABLE_HBM:	Enable "High Brightness Mode" feature on panel
  */
 enum mdss_intf_events {
 	MDSS_EVENT_RESET = 1,
@@ -260,6 +261,7 @@ enum mdss_intf_events {
 	MDSS_EVENT_PANEL_VDDIO_SWITCH_ON,
 	MDSS_EVENT_PANEL_VDDIO_SWITCH_OFF,
 	MDSS_EVENT_MAX,
+	MDSS_EVENT_ENABLE_HBM,
 };
 
 struct lcd_panel_info {
@@ -754,6 +756,9 @@ struct mdss_panel_info {
 
 	/* debugfs structure for the panel */
 	struct mdss_panel_debugfs_info *debugfs_info;
+
+	bool hbm_feature_enabled;
+	bool hbm_state;
 
 	/*HTC add as below*/
 	struct htc_backlight1_table brt_bl_table;
