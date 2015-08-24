@@ -217,7 +217,7 @@ EXPORT_SYMBOL_GPL(mpi_read_buffer);
  */
 void *mpi_get_buffer(MPI a, unsigned *nbytes, int *sign)
 {
-	uint8_t *buf, *p;
+	uint8_t *buf;
 	unsigned int n;
 	int ret;
 
@@ -240,14 +240,6 @@ void *mpi_get_buffer(MPI a, unsigned *nbytes, int *sign)
 		kfree(buf);
 		return NULL;
 	}
-
-	/* this is sub-optimal but we need to do the shift operation
-	 * because the caller has to free the returned buffer */
-	for (p = buf; !*p && *nbytes; p++, --*nbytes)
-		;
-	if (p != buf)
-		memmove(buf, p, *nbytes);
-
 	return buf;
 }
 EXPORT_SYMBOL_GPL(mpi_get_buffer);
