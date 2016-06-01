@@ -31,3 +31,4 @@ obj-$(CONFIG_INPUT_APMPOWER)	+= apm-power.o
 obj-$(CONFIG_INPUT_KEYRESET)	+= keyreset_htc.o
 obj-$(CONFIG_INPUT_KEYCOMBO)	+= keycombo_htc.o
 obj-$(CONFIG_INPUT_KEYLED)	+= keyled.o
+obj-$(CONFIG_HOMEBUTTON)	+= homebutton.o
