@@ -10056,7 +10056,7 @@ static int pmi8994_get_htc_chg_en(void)
 		return -EINVAL;
 	}
 
-	rc = get_property_from_htcchg(the_chip, POWER_SUPPLY_PROP_CHARGE_ENABLED, &value);
+	rc = get_property_from_htcchg(the_chip, POWER_SUPPLY_PROP_PIN_ENABLED, &value);
 	if (rc) {
 		value = 0;
 	}
