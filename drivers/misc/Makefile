@@ -75,4 +75,4 @@ obj-$(CONFIG_HTC_FLASHLIGHT)	+= htc_flashlight.o
 obj-$(CONFIG_RT_REGMAP)		+= rt-regmap.o
 obj-$(CONFIG_VIB_TRIGGERS)	+= vib-triggers.o
 obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
-obj-y				+= sound_control.o
+obj-$(CONFIG_SOUND_CONTROL)		+= sound_control.o
