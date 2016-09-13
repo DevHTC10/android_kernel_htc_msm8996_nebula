@@ -246,14 +246,9 @@ void trigger_cpu_pwr_stats_calc(void)
 			continue;
 
 		if (cpu_node->temp == prev_temp[cpu]) {
-			rc = sensor_get_temp(cpu_node->sensor_id, &temp);
-			if (rc) {
-				pr_err("msm-core: The sensor reported invalid data!");
-				temp = DEFAULT_TEMP;
-			}
+			sensor_get_temp(cpu_node->sensor_id, &temp);
+			cpu_node->temp = temp / scaling_factor;
 		}
-
-		cpu_node->temp = temp / scaling_factor;
 
 		prev_temp[cpu] = cpu_node->temp;
 
