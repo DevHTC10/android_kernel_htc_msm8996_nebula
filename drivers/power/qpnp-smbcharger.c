@@ -42,7 +42,7 @@
 #include <linux/power/htc_battery.h>
 #include <linux/htc_flags.h>
 #endif
-#include "pmic-voter.h"
+#include <linux/pmic-voter.h>
 
 #ifdef CONFIG_FORCE_FAST_CHARGE
 #include <linux/fastchg.h>
