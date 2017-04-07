@@ -158,6 +158,7 @@ typedef struct sg_fd {		/* holds the state of a file descriptor */
 	int timeout_user;	/* defaults to SG_DEFAULT_TIMEOUT_USER */
 	Sg_scatter_hold reserve;	/* buffer held for this file descriptor */
 	struct list_head rq_list; /* head of request list */
+	Sg_request *headrp;	/* head of request slist, NULL->empty */
 	struct fasync_struct *async_qp;	/* used by asynchronous notification */
 	Sg_request req_arr[SG_MAX_QUEUE];	/* used as singly-linked list */
 	char low_dma;		/* as in parent but possibly overridden to 1 */
