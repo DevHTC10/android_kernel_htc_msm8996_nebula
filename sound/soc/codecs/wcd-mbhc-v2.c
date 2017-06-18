@@ -1098,7 +1098,7 @@ static int wcd_check_cross_conn(struct wcd_mbhc *mbhc)
 	u16 swap_res = 0; //HTC_AUD klockwork
 	enum wcd_mbhc_plug_type plug_type = MBHC_PLUG_TYPE_NONE;
 	s16 reg1 = 0; //HTC_AUD klockwork
-	bool hphl_sch_res = 0, hphr_sch_res = 0; //HTC_AUD klockwork
+	bool hphl_sch_res = false, hphr_sch_res = false; //HTC_AUD klockwork
 
 	if (wcd_swch_level_remove(mbhc)) {
 		pr_debug("%s: Switch level is low\n", __func__);
@@ -1153,7 +1153,8 @@ static bool wcd_is_special_headset(struct wcd_mbhc *mbhc)
 	struct snd_soc_codec *codec = mbhc->codec;
 	int delay = 0, rc = 0; //HTC_AUD klockwork
 	bool ret = false;
-	bool hs_comp_res = false; //HTC_AUD klockwork
+	u16 hs_comp_res = 0; //HTC_AUD klockwork
+	bool is_spl_hs = false;
 
 	/*
 	 * Increase micbias to 2.7V to detect headsets with
@@ -1732,7 +1733,7 @@ static void wcd_mbhc_detect_plug_type(struct wcd_mbhc *mbhc)
 
 static void wcd_mbhc_swch_irq_handler(struct wcd_mbhc *mbhc)
 {
-	bool detection_type = 0; //HTC_AUD klockwork
+	bool detection_type = false; //HTC_AUD klockwork
 	bool micbias1 = false;
 	struct snd_soc_codec *codec = mbhc->codec;
 
@@ -1930,7 +1931,7 @@ static irqreturn_t wcd_mbhc_hs_ins_irq(int irq, void *data)
 	struct wcd_mbhc *mbhc = data;
 
 //HTC_AUD_START klockwork
-	bool detection_type = 0, hphl_sch = 0, mic_sch = 0;
+	bool detection_type = false, hphl_sch = false, mic_sch = false;
 	u16 elect_result = 0;
 	static u16 hphl_trigerred = 0;
 	static u16 mic_trigerred = 0;
