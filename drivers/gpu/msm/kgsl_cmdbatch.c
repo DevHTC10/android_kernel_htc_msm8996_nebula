@@ -347,7 +347,6 @@ static int kgsl_cmdbatch_add_sync_fence(struct kgsl_device *device,
 	struct kgsl_cmdbatch_sync_event *event;
 	struct sync_fence *fence = NULL;
 	unsigned int id;
-	unsigned long flags;
 	int ret = 0;
 
 	fence = sync_fence_fdget(sync->fd);
@@ -371,8 +370,6 @@ static int kgsl_cmdbatch_add_sync_fence(struct kgsl_device *device,
 
 	trace_syncpoint_fence(cmdbatch, fence->name);
 
-	spin_lock_irqsave(&event->handle_lock, flags);
-
 	event->handle = kgsl_sync_fence_async_wait(sync->fd,
 		kgsl_cmdbatch_sync_fence_func, event);
 
@@ -392,8 +389,6 @@ static int kgsl_cmdbatch_add_sync_fence(struct kgsl_device *device,
 		*/
 		trace_syncpoint_fence_expire(cmdbatch, (ret < 0) ?
 				"error" : fence->name);
-	} else {
-		spin_unlock_irqrestore(&event->handle_lock, flags);
 	}
 
 	sync_fence_put(fence);
