@@ -345,8 +345,8 @@ esac
 function SET_LOCALVERSION() {
 	if [ "$SET_LOCAL"  == 01 ]; then
 	echo "Local Version From ${DEFCONFIG} Has been Changed to the Following:"
-	echo ${DEFCONFIGS}/${DEFCONFIG} "CONFIG_LOCALVERSION" 'CONFIG_LOCALVERSION="'${KNAME}_${REV}_${KVER}'"'
-	replace_line ${DEFCONFIGS}/${DEFCONFIG} "CONFIG_LOCALVERSION" 'CONFIG_LOCALVERSION="'${KNAME}_${REV}_${KVER}'"'
+	echo ${DEFCONFIGS}/${DEFCONFIG} "CONFIG_LOCALVERSION" 'CONFIG_LOCALVERSION="'_${KNAME}_${REV}_${KVER}'"'
+	replace_line ${DEFCONFIGS}/${DEFCONFIG} "CONFIG_LOCALVERSION" 'CONFIG_LOCALVERSION="'_${KNAME}_${REV}_${KVER}'"'
 	else
 	echo "Local Version From ${DEFCONFIG} Has not been changed."
     fi
