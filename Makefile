@@ -434,13 +434,16 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security -Wno-unused -Wno-maybe-uninitialized \
                    -Wno-array-bounds -Wno-memset-transposed-args \
-		   -Wno-format-truncation -Wno-bool-operation -Wno-stringop-overflow -Wno-stringop-overflow \
+		   -Wno-format-truncation -Wno-bool-operation -Wno-bool-compare \
+		   -Wno-stringop-overflow -Wno-stringop-overflow \
 		   -ffast-math -Wno-multistatement-macros -Wno-duplicate-decl-specifier \
+		   -Wno-memset-elt-size -Wno-format-overflow -fno-store-merging \
 		   -mcpu=cortex-a57.cortex-a53+crc+crypto -mtune=cortex-a57.cortex-a53 \
                    -march=armv8-a+crc \
                    -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
+		   -Wno-discarded-array-qualifiers -Wno-incompatible-pointer-types \
+		   -Wno-return-local-addr -Wno-nonnull -fno-delete-null-pointer-checks \
 		   -fno-aggressive-loop-optimizations \
-		   -fno-delete-null-pointer-checks \
 		   $(GRAPHITE) \
                    -std=gnu89
 
