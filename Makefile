@@ -360,7 +360,7 @@ include $(srctree)/scripts/Kbuild.include
 # Make variables (CC, etc...)
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld.bfd
-CC		= $(CCACHE) $(CROSS_COMPILE)gcc $(FLAGS) $(GRAPHITE)
+CC		= $(CCACHE) $(CROSS_COMPILE)gcc
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
@@ -403,7 +403,7 @@ LDFLAGS_MODULE  = --strip-debug
 CFLAGS_KERNEL	=
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage -fno-tree-loop-im
-CFLAGS_KCOV	= -fsanitize-coverage=trace-pc
+# CFLAGS_KCOV	= -fsanitize-coverage=trace-pc
 
 # Nebula's Optimizations
 NEBULA_FLAGS	+= -pipe
@@ -438,7 +438,6 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -ffast-math -Wno-multistatement-macros -Wno-duplicate-decl-specifier \
 		   -mcpu=cortex-a57.cortex-a53+crc+crypto -mtune=cortex-a57.cortex-a53 \
                    -march=armv8-a+crc \
-                   -fmodulo-sched -fmodulo-sched-allow-regmoves \
                    -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
 		   -fno-aggressive-loop-optimizations \
 		   -fno-delete-null-pointer-checks \
@@ -452,8 +451,8 @@ KBUILD_CFLAGS	+= -O2 -g0 -DNDEBUG
 LD		+= --strip-debug -O2
 
 # GCC 6.1 is too strict
-KBUILD_CFLAGS	+= -Wno-misleading-indentation -Wno-tautological-compare -pipe -fno-pic	   
-KBUILD_CFLAGS	+= $(GEN_OPT_FLAGS)
+# KBUILD_CFLAGS	+= -Wno-misleading-indentation -Wno-tautological-compare -pipe -fno-pic	   
+# KBUILD_CFLAGS	+= $(GEN_OPT_FLAGS)
 
 # Needed to unbreak GCC 7.x and above
 BUILD_CFLAGS   += $(call cc-option,-fno-store-merging,)
