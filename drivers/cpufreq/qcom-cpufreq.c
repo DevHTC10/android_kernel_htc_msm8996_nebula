@@ -53,8 +53,8 @@ static DEFINE_PER_CPU(struct cpufreq_suspend_t, suspend_data);
 #ifdef CONFIG_QCOM_CPUFREQ_LIMITER
 static unsigned int upper_limit_freq[NR_CPUS] = {1593600, 1593600, 2150400, 2150400};
 static unsigned int lower_limit_freq[NR_CPUS] = {0, 0, 0, 0};
-#define CPU_MAX_OC_FREQ_BC	2265600
-#define CPU_MAX_OC_FREQ_LC	1728000
+#define CPU_MAX_OC_FREQ_BC	2304000
+#define CPU_MAX_OC_FREQ_LC	1881600
 #define CPU_MIN_DEFAULT_FREQ	307200
 
 unsigned int get_cpu_min_lock(unsigned int cpu)
