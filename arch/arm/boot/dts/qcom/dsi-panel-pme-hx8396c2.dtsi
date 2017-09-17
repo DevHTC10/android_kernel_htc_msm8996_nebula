@@ -362,6 +362,10 @@
 		qcom,mdss-dsi-lp11-init;
 		qcom,esd-check-enabled;
 		qcom,mdss-dsi-panel-status-check-mode = "te_signal_check_v2";
+		qcom,mdss-dsi-hbm-on-command = [
+			15 01 00 00 00 00 02 53 e0];
+		qcom,mdss-dsi-hbm-off-command = [
+			15 01 00 00 00 00 02 53 20];
 		/* XXX: Don't care */
 		qcom,mdss-dsi-panel-status-command = [06 01 00 01 05 00 02 0A 00];
 		qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
@@ -525,6 +529,10 @@
 		qcom,mdss-dsi-lp11-init;
 		qcom,esd-check-enabled;
 		qcom,mdss-dsi-panel-status-check-mode = "te_signal_check_v2";
+		qcom,mdss-dsi-hbm-on-command = [
+			15 01 00 00 00 00 02 53 e0];
+		qcom,mdss-dsi-hbm-off-command = [
+			15 01 00 00 00 00 02 53 20];
 		/* XXX: Don't care */
 		qcom,mdss-dsi-panel-status-command = [06 01 00 01 05 00 02 0A 00];
 		qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
@@ -885,6 +893,10 @@
 		qcom,mdss-dsi-lp11-init;
 		qcom,esd-check-enabled;
 		qcom,mdss-dsi-panel-status-check-mode = "te_signal_check_v2";
+		qcom,mdss-dsi-hbm-on-command = [
+			15 01 00 00 00 00 02 53 e0];
+		qcom,mdss-dsi-hbm-off-command = [
+			15 01 00 00 00 00 02 53 20];		
 		/* XXX: Don't care */
 		qcom,mdss-dsi-panel-status-command = [06 01 00 01 05 00 02 0A 00];
 		qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
@@ -1250,6 +1262,10 @@
 		qcom,mdss-dsi-lp11-init;
 		qcom,esd-check-enabled;
 		qcom,mdss-dsi-panel-status-check-mode = "te_signal_check_v2";
+		qcom,mdss-dsi-hbm-on-command = [
+			15 01 00 00 00 00 02 53 e0];
+		qcom,mdss-dsi-hbm-off-command = [
+			15 01 00 00 00 00 02 53 20];
 		/* XXX: Don't care */
 		qcom,mdss-dsi-panel-status-command = [06 01 00 01 05 00 02 0A 00];
 		qcom,mdss-dsi-panel-status-command-state = "dsi_hs_mode";
