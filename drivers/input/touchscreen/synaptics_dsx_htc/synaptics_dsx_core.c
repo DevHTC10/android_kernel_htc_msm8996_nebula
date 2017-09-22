@@ -6153,7 +6153,14 @@ static int fb_notifier_callback(struct notifier_block *self,
 			synaptics_rmi4_querry_f51_data(rmi4_data);
 			synaptics_rmi4_late_resume(&(rmi4_data->input_dev->dev));
 			break;
+		case FB_BLANK_NORMAL:
+		case FB_BLANK_VSYNC_SUSPEND:
+		case FB_BLANK_HSYNC_SUSPEND:
+		        firstBoot = 0;
+				break;
 		case FB_BLANK_POWERDOWN:
+	     default:
+		        firstBoot--;
 			synaptics_rmi4_querry_f51_data(rmi4_data);
 			synaptics_rmi4_early_suspend((&rmi4_data->input_dev->dev));
 			break;
