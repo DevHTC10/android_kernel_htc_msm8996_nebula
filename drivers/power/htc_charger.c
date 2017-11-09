@@ -29,7 +29,7 @@
 #include <linux/msm_bcl.h>
 #include <linux/ktime.h>
 #include <linux/htc_flags.h>
-#include "pmic-voter.h"
+#include <linux/pmic-voter.h>
 #ifdef CONFIG_HTC_BATT
 #include <linux/power/htc_battery.h>
 #endif
@@ -666,7 +666,7 @@ static int htcchg_get_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_FLASH_ACTIVE:
 		val->intval = chip->flash_actived;
 		break;
-	case POWER_SUPPLY_PROP_CHARGE_ENABLED:
+	case POWER_SUPPLY_PROP_PIN_ENABLED:
 		val->intval = chip->path_status;
 		break;
 	case POWER_SUPPLY_PROP_CHARGE_NOW:
@@ -710,8 +710,8 @@ static int htcchg_set_property(struct power_supply *psy,
 		chip->flash_actived = val->intval;
 		rc = htcchg_en_control(chip, chip->charge_enabled);
 		break;
-	case POWER_SUPPLY_PROP_CHARGE_ENABLED:
-		pr_htcchg(PR_STATUS, "POWER_SUPPLY_PROP_CHARGE_ENABLED set: %d.\n", val->intval);
+	case POWER_SUPPLY_PROP_PIN_ENABLED:
+		pr_htcchg(PR_STATUS, "POWER_SUPPLY_PROP_PIN_ENABLED set: %d.\n", val->intval);
 		rc = htcchg_en_control(chip, val->intval);
 		break;
 	case POWER_SUPPLY_PROP_SYSTEM_TEMP_LEVEL:
@@ -739,7 +739,7 @@ static int htcchg_is_writeable(struct power_supply *psy,
 	switch (prop) {
 	case POWER_SUPPLY_PROP_CHARGING_ENABLED:
 	case POWER_SUPPLY_PROP_FLASH_ACTIVE:
-	case POWER_SUPPLY_PROP_CHARGE_ENABLED:
+	case POWER_SUPPLY_PROP_PIN_ENABLED:
 	case POWER_SUPPLY_PROP_SYSTEM_TEMP_LEVEL:
 		rc = 1;
 		break;
@@ -751,7 +751,7 @@ static int htcchg_is_writeable(struct power_supply *psy,
 }
 
 static enum power_supply_property htcchg_properties[] = {
-	POWER_SUPPLY_PROP_CHARGE_ENABLED,
+	POWER_SUPPLY_PROP_PIN_ENABLED,
 	POWER_SUPPLY_PROP_SYSTEM_TEMP_LEVEL
 };
 

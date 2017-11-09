@@ -418,51 +418,35 @@ enum wake_reason {
 	PM_DETECT_HVDCP = BIT(4),
 };
 
-enum fcc_voters {
-	ESR_PULSE_FCC_VOTER,
-	BATT_TYPE_FCC_VOTER,
-	RESTRICTED_CHG_FCC_VOTER,
+/* fcc_voters */
+#define ESR_PULSE_FCC_VOTER    "ESR_PULSE_FCC_VOTER"
+#define BATT_TYPE_FCC_VOTER    "BATT_TYPE_FCC_VOTER"
 #ifdef CONFIG_HTC_BATT_PCN0016
-	HTCCHG_FCC_VOTER,
-#endif //CONFIG_HTC_BATT_PCN0016
-	NUM_FCC_VOTER,
-};
+#define    HTCCHG_FCC_VOTER "HTCCHG_FCC_VOTER"
+#endif 
+#define RESTRICTED_CHG_FCC_VOTER    "RESTRICTED_CHG_FCC_VOTER"
 
-enum icl_voters {
-	PSY_ICL_VOTER,
-	THERMAL_ICL_VOTER,
-	HVDCP_ICL_VOTER,
-	USER_ICL_VOTER,
-	WEAK_CHARGER_ICL_VOTER,
-	SW_AICL_ICL_VOTER,
-	CHG_SUSPEND_WORKAROUND_ICL_VOTER,
+/* ICL VOTERS */
+#define PSY_ICL_VOTER        "PSY_ICL_VOTER"
+#define THERMAL_ICL_VOTER    "THERMAL_ICL_VOTER"
+#define HVDCP_ICL_VOTER        "HVDCP_ICL_VOTER"
+#define USER_ICL_VOTER        "USER_ICL_VOTER"
+#define WEAK_CHARGER_ICL_VOTER    "WEAK_CHARGER_ICL_VOTER"
+#define SW_AICL_ICL_VOTER    "SW_AICL_ICL_VOTER"
+#define CHG_SUSPEND_WORKAROUND_ICL_VOTER "CHG_SUSPEND_WORKAROUND_ICL_VOTER"
 #ifdef CONFIG_HTC_BATT_PCN0016
-	HTCCHG_ICL_VOTER,
-#endif //CONFIG_HTC_BATT_PCN0016
+#define    HTCCHG_ICL_VOTER "HTCCHG_ICL_VOTER"
+#endif
 #ifdef CONFIG_HTC_BATT
-//	SHUTDOWN_WORKAROUND_ICL_VOTER, //replace by CHG_SUSPEND_WORKAROUND_ICL_VOTER
 #else
-	SHUTDOWN_WORKAROUND_ICL_VOTER,
-#endif //CONFIG_HTC_BATT
-	PARALLEL_ICL_VOTER,
-	NUM_ICL_VOTER,
-};
+#define    SHUTDOWN_WORKAROUND_ICL_VOTER "SHUTDOWN_WORKAROUND_ICL_VOTER"
+#endif 
+#define    PARALLEL_ICL_VOTER    "PARALLEL_ICL_VOTER"
 
 /* fcc_voters */
 #define ESR_PULSE_FCC_VOTER	"ESR_PULSE_FCC_VOTER"
 #define BATT_TYPE_FCC_VOTER	"BATT_TYPE_FCC_VOTER"
 #define RESTRICTED_CHG_FCC_VOTER	"RESTRICTED_CHG_FCC_VOTER"
-
-/* ICL VOTERS */
-#define PSY_ICL_VOTER		"PSY_ICL_VOTER"
-#define THERMAL_ICL_VOTER	"THERMAL_ICL_VOTER"
-#define HVDCP_ICL_VOTER		"HVDCP_ICL_VOTER"
-#define USER_ICL_VOTER		"USER_ICL_VOTER"
-#define WEAK_CHARGER_ICL_VOTER	"WEAK_CHARGER_ICL_VOTER"
-#define SW_AICL_ICL_VOTER	"SW_AICL_ICL_VOTER"
-#define CHG_SUSPEND_WORKAROUND_ICL_VOTER "CHG_SUSPEND_WORKAROUND_ICL_VOTER"
-#define	SHUTDOWN_WORKAROUND_ICL_VOTER "SHUTDOWN_WORKAROUND_ICL_VOTER"
-#define	PARALLEL_ICL_VOTER	"PARALLEL_ICL_VOTER"
 
 /* USB SUSPEND VOTERS */
 /* userspace has suspended charging altogether */
@@ -3529,7 +3513,7 @@ static int set_usb_current_limit_vote_cb(struct votable *votable,
 
 #ifdef CONFIG_HTC_BATT_WA_PCN0013
 		/* clear hvdcp_icl_voter and restore HVDCP detection if charger type is AC */
-		if (effective_id == HVDCP_ICL_VOTER){
+		if (strcmp(effective_client, HVDCP_ICL_VOTER) == 0){
 			if (chip->usb_supply_type == POWER_SUPPLY_TYPE_USB_DCP){
 				pr_smb(PR_STATUS, "AC type but HVDCP limit ICL set, re-detect HVDCP\n");
 				schedule_work(&chip->hvdcp_redet_work);
@@ -10172,7 +10156,7 @@ static int pmi8994_get_htc_chg_en(void)
 		return -EINVAL;
 	}
 
-	rc = get_property_from_htcchg(the_chip, POWER_SUPPLY_PROP_CHARGE_ENABLED, &value);
+	rc = get_property_from_htcchg(the_chip, POWER_SUPPLY_PROP_PIN_ENABLED, &value);
 	if (rc) {
 		value = 0;
 	}
