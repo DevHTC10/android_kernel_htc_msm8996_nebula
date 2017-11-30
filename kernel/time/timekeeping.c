@@ -1693,7 +1693,7 @@ struct timespec get_monotonic_coarse(void)
 	} while (read_seqcount_retry(&tk_core.seq, seq));
 
 	set_normalized_timespec64(&now, now.tv_sec + mono.tv_sec,
-				now.tv_nsec + mono.tv_nsec);
+				(s64)now.tv_nsec + (s64)mono.tv_nsec);
 
 	return timespec64_to_timespec(now);
 }
